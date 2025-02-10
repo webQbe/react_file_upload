@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React from 'react'
 import FileUpload from './components/FileUpload'
 import './App.css'
  
@@ -13,3 +13,15 @@ const App = () => (
 )
       
 export default App
+
+/* FileUpload.jsx and Server.js - End-to-End Flow 
+
+    1. User selects a file in the frontend (FileUpload.jsx).
+    2. The file is sent to http://localhost:5000/uploads via POST request.
+    3. The Express server (server.js):
+        1. Receives the request.
+        2. Moves the file to public/uploads/.
+        3. Responds with the uploaded file details.
+    4. The frontend updates the UI with the response.
+    
+*/
