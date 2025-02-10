@@ -28,8 +28,7 @@
         import viteLogo from '/vite.svg'
         ```
     3. Clear contents in `src/App.css`
-7. Add `"proxy": "http://localhost:5000"` to root `package.json`
-8. Install Axios: `npm i axios`
+7. Install Axios: `npm i axios`
 
 
 
