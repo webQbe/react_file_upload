@@ -75,6 +75,17 @@ const FileUpload = () => {
             </div>
             <input type="submit" value="Upload" className="btn btn-primary btn-block mt-4" />
         </form>
+
+        { uploadedFile ? 
+            // Show file name and image when file is uploaded
+            <div className="row mt-5">
+              <div className="col-md-6 m-auto">
+                <h3 className="text-center">{ uploadedFile.fileName }</h3>
+                <img style={{ width: '100%' }} src={`http://localhost:5000${uploadedFile.filePath}`} alt="" />
+              </div>
+            </div> :
+                null // Return null if file is not uploaded
+        }
     </Fragment>
   )
 }
