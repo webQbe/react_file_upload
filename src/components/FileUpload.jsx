@@ -12,6 +12,8 @@ const FileUpload = () => {
   const [uploadedFile, setUploadedFile] = useState({}); 
   // Store file upload status message
   const [message, setMessage] = useState(''); 
+  // Store upload percentage
+  const [uploadPercentage, setUploadPercentage] = useState(0);
 
   // Update file and filename states when a file is selected
   const onChange = e => {
@@ -32,8 +34,21 @@ const FileUpload = () => {
         const res = await axios.post('http://localhost:5000/uploads', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
+            },
+            onUploadProgress: progressEvent => {
+
+                setUploadPercentage(
+                  // Calculate Percentage
+                  parseInt(
+                    Math.round((progressEvent.loaded * 100) / progressEvent.total)
+                  )
+                );
+
+                // Clear Percentage in 10 secs
+                setTimeout(() => setUploadPercentage(0), 10000); 
             }
-        });
+
+          });
 
         // Console log response data
         console.log("Server Response:", res.data);
