@@ -1,5 +1,6 @@
-import React, { Fragment, useState } from 'react'
-import axios from 'axios'
+import React, { Fragment, useState } from 'react';
+import Message from './Message';
+import axios from 'axios';
 
 const FileUpload = () => {
   /* State Management */
@@ -9,6 +10,8 @@ const FileUpload = () => {
   const [filename, setFilename] = useState('Choose File'); 
   // Store uploaded file details after successful upload
   const [uploadedFile, setUploadedFile] = useState({}); 
+  // Store file upload status message
+  const [message, setMessage] = useState(''); 
 
   // Update file and filename states when a file is selected
   const onChange = e => {
@@ -46,15 +49,19 @@ const FileUpload = () => {
         // Update uploadedFile state with response data
         setUploadedFile({ fileName, filePath });
 
+        // Update message state
+        setMessage('File Uploaded!');
+
     } catch(err) {
          /* Log errors in case of failure */
          console.error("Upload Error:", err);
          if(err.response && err.response.status === 500) {
-            console.log('There was a problem with the server!');
+            // Update message state (try deleting uploads/ folder)
+            setMessage('There was a problem with the server!');
          } else if (err.response) {
-          console.log(err.response.data.msg);
+          setMessage(err.response.data.msg);
          } else {
-          console.log("Unknown error occurred");
+          setMessage("Unknown error occurred");
          }
     }
   };
@@ -65,6 +72,11 @@ const FileUpload = () => {
   */
   return (
     <Fragment>
+        { // Show upload status message
+          message ? // If message state not blank
+            <Message msg={message} /> // Pass message state to Message.jsx
+            : null
+        } 
         <form onSubmit={onSubmit}>
             <div className="custom-file mb-4">
                 <input type="file" className="custom-file-input" id="customFile" 
