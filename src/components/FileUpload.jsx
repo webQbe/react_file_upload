@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import Message from './Message';
+import Progress from './Progress';
 import axios from 'axios';
 
 const FileUpload = () => {
@@ -35,7 +36,7 @@ const FileUpload = () => {
             headers: {
                 'Content-Type': 'multipart/form-data'
             },
-            onUploadProgress: progressEvent => {
+            onUploadProgress: progressEvent => { 
 
                 setUploadPercentage(
                   // Calculate Percentage
@@ -46,6 +47,18 @@ const FileUpload = () => {
 
                 // Clear Percentage in 10 secs
                 setTimeout(() => setUploadPercentage(0), 10000); 
+
+                /* onUploadProgress function in Axios tracks the progress of file uploads. It provides real-time feedback about how much of the file has been uploaded. This is particularly useful for showing a progress bar or percentage indicator in your UI.
+
+                progressEvent.loaded: The number of bytes already uploaded.
+                progressEvent.total: The total number of bytes in the file.
+
+                When Should You Use onUploadProgress?
+                  When uploading large files (images, videos, documents).
+                  When providing better user experience by showing upload progress.
+                  When preventing users from submitting multiple uploads before completion.
+
+                */
             }
 
           });
@@ -100,6 +113,10 @@ const FileUpload = () => {
                     {filename}
                 </label>
             </div>
+            
+            <Progress percentage={uploadPercentage} 
+            /* Pass upload percentage to progress bar */ />
+
             <input type="submit" value="Upload" className="btn btn-primary btn-block mt-4" />
         </form>
 
