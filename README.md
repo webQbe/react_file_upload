@@ -1,5 +1,7 @@
 # React File Uploader
+This repo is an adaptation of [React File Uploader With Express (Using React Hooks)](https://www.youtube.com/watch?v=b6Oe2puTdMQ&list=PLillGF-RfqbY3c2r0htQyVbDJJoBFE6Rb&index=7&pp=iAQB) by Brad Traversy. 
 
+I followed the tutorial to learn followings:
 - Creating back-end with **express-fileupload** package
 - Using Bootstrap & FontAwesome for UI elements: progress bar & "File Uploaded" alert
 - Using `Async/Await` and `axios` to show file upload progress: 
@@ -50,3 +52,11 @@
                 }
     ```
 6. Start front-end & back-end servers: `npm run dev`
+
+
+## Credits
+Original tutorial: [React File Uploader With Express (Using React Hooks)](https://www.youtube.com/watch?v=b6Oe2puTdMQ&list=PLillGF-RfqbY3c2r0htQyVbDJJoBFE6Rb&index=7&pp=iAQB) — Brad Traversy.
+
+
+## License
+MIT License
